@@ -1,7 +1,9 @@
 name: CI
+
 on:
-  pull_request:
   push:
+    branches: [main]
+  pull_request:
     branches: [main]
 
 concurrency:
@@ -10,10 +12,8 @@ concurrency:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, nixos]
     steps:
       - uses: actions/checkout@v4
-      - uses: paolino/dev-assets/setup-nix@v0.0.1
-        with:
-          cachix-auth-token: "${{ secrets.CACHIX_AUTH_TOKEN }}"
-      - run: nix develop --quiet -c just ci
+      - name: Build and test
+        run: nix develop --quiet -c just ci
