@@ -9,19 +9,16 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  IMAGE: ghcr.io/paolino/kel-circle
+  IMAGE: ghcr.io/lambdasistemi/kel-circle
 
 jobs:
   build-push:
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, nixos]
     permissions:
       contents: read
       packages: write
     steps:
       - uses: actions/checkout@v4
-      - uses: paolino/dev-assets/setup-nix@v0.0.1
-        with:
-          cachix-auth-token: "${{ secrets.CACHIX_AUTH_TOKEN }}"
       - name: Build docker image with nix
         run: nix build --quiet .#docker-image -o result
       - name: Log in to GHCR

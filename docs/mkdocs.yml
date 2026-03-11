@@ -1,7 +1,7 @@
 site_name: kel-circle
-site_url: https://paolino.github.io/kel-circle/
-repo_url: https://github.com/paolino/kel-circle
-repo_name: paolino/kel-circle
+site_url: https://lambdasistemi.github.io/kel-circle/
+repo_url: https://github.com/lambdasistemi/kel-circle
+repo_name: lambdasistemi/kel-circle
 
 theme:
   name: material
